@@ -192,13 +192,11 @@ struct uri *parse_uri(const char *str, const char **endptr)
 
     maybe_set(endptr, fragment_start + fragment_len);
 
-    struct uri *uri = malloc(sizeof(struct uri));
+    struct uri *uri = calloc(1, sizeof(struct uri));
     if (uri == NULL)
     {
         return NULL;
     }
-
-    memset(uri, 0, sizeof(struct uri));
 
     uri->scheme = strndup(scheme_start, scheme_len);
     if (uri->scheme == NULL)
