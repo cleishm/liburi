@@ -12,8 +12,8 @@
  * This software is distributed on an "AS IS" basis, WITHOUT WARRANTY OF ANY
  * KIND, either express or implied.
  */
-#ifndef URI_H
-#define URI_H
+#ifndef LIBURI_URI_H
+#define LIBURI_URI_H
 
 struct uri
 {
@@ -26,9 +26,22 @@ struct uri
     char *fragment;
 };
 
-
+/**
+ * Parse a URI.
+ *
+ * @param [str] A pointer to a `NULL` terminated string containing the URI.
+ * @param [endptr] A pointer to a char pointer, which will be updated to the
+ *         last valid character of the input. If this points to the `NULL`
+ *         character, then the entire input was valid.
+ * @return A newly allocated `struct uri`.
+ */
 struct uri *parse_uri(const char *str, const char **endptr);
+
+/**
+ * Deallocate a `struct uri`.
+ *
+ * @param [uri] The `struct uri` to deallocate.
+ */
 void free_uri(struct uri *uri);
 
-
-#endif/*URI_H*/
+#endif/*LIBURI_URI_H*/
